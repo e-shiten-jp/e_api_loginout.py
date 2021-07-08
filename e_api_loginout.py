@@ -48,8 +48,13 @@ my_sJsonOfmt = '5'    # "5"は "1"（ビット目ＯＮ）と”4”（ビット
 
 
 # デモ環境（新バージョンになった場合、適宜変更）
-url_base = 'https://demo-kabuka.e-shiten.jp/e_api_v4r1/'
+# デモ環境は今のところメンテナンス待ちのため、注文、取消では利用できません。
+url_base = 'https://demo-kabuka.e-shiten.jp/e_api_v4r2/'
+#url_base = 'https://demo-kabuka.e-shiten.jp/e_api_v4r1/'
+
 # 本番環境（新バージョンになった場合、適宜変更）
+# ＊＊！！実際に市場に注文が出るので注意！！＊＊
+# url_base = 'https://kabuka.e-shiten.jp/e_api_v4r2/'
 # url_base = 'https://kabuka.e-shiten.jp/e_api_v4r1/'
 
 
@@ -75,7 +80,7 @@ print("req.status= ", req.status )
 bytes_reqdata = req.data
 str_shiftjis = bytes_reqdata.decode("shift-jis", errors="ignore")
 
-print('返ってきたデータ＝')
+print('返信文字列＝')
 print(str_shiftjis)
 
 # JSON形式の文字列を辞書型で取り出す
@@ -115,10 +120,12 @@ else :  # ログインに問題があった場合
     my_sUrlEvent = ''        # event用仮想URL
 
 
-print()
-print('-- logout -------------------------------------------------------------')
 
 if len(my_sUrlRequest) > 0 and len(my_sUrlEvent) > 0 :
+
+    print()
+    print('-- logout -------------------------------------------------------------')
+
     ## マニュアルの解説「（２）ログアウト」
     ##        {
     ##　　　　　"p_no":"2",
@@ -128,11 +135,12 @@ if len(my_sUrlRequest) > 0 and len(my_sUrlEvent) > 0 :
     ##
     ##　　　要求例：
     ##　　　　仮想ＵＲＬ（REQUEST）/?{"p_no":"2","p_sd_date":"2020.07.01-10:00:00.100","sCLMID":"CLMAuthLogoutRequest"}
+    
     # 送信項目の解説は、マニュアル「立花証券・ｅ支店・ＡＰＩ（ｖ〇）、REQUEST I/F、機能毎引数項目仕様」
     # 3/43 No.3 引数名:CLMAuthLogoutRequest を参照してください。
 
     
-    int_p_no += int_p_no    # p_noは、カウントアップする
+    int_p_no += 1    # p_noは、カウントアップする
 
     # システムデイトを所定の書式で取得
     int_systime = datetime.datetime.now()
@@ -164,7 +172,7 @@ if len(my_sUrlRequest) > 0 and len(my_sUrlEvent) > 0 :
     
     # 戻り値がbytes型なので、json.loadsを利用できるようにstr型に変換する。文字コードはshift-jis。
     str_shiftjis = req.data.decode("shift-jis", errors="ignore")
-    print('返ってきたデータ＝')
+    print('返信文字列＝')
     print(str_shiftjis)
 
     # JSON形式の文字列を辞書型で取り出す
