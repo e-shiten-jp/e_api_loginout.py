@@ -15,6 +15,21 @@ APIバージョン： V4r2で動作確認
 
 =========================================
 
+API動作の概略
+
+	a)Login
+	APIの所定のjson書式で文字列を作成。	61 - 68行目 APIのURL + json書式の所定の項目
+	httpのインスタンスを作成。	75行目 http = urllib3.PoolManager()
+	httpインスタンスに文字列を'GET'メソッドでリクエストする。	76行目 req = http.request('GET', my_url)
+	返信文字列を取得（仮想URLや口座属性等）
+	
+	b)以降のrequestコマンド
+	取得したrequest用の仮想URL（sUrlRequest）の後ろにAPIの所定のjson書式で文字列を作成し繋げる
+	ログインで作成したhttpインスタンスに文字列を'GET'メソッドで投げる。
+	返信文字列を取得する。
+	
+	要は文字列をhttpに投げ、1問1答形式で処理するだけの簡単な構造です。
+
 
 
 1）動作テストを実行した環境は、os: Centos7.4、python: 3.6.8 です。
