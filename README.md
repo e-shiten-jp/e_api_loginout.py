@@ -41,7 +41,7 @@ API動作の概略
 
 ４）実行内容は、以下になります。
 
-・ログインして仮想URL（request）と仮想URL（event）を取得する。
+・ログインして仮想URL（request, master, price, event）を取得する。
 
 ・取得した仮想URL（request）を利用してログアウトを実行する。
 
