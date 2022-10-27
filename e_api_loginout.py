@@ -394,7 +394,6 @@ def func_logout(int_p_no, class_cust_property):
     
 # 接続先 設定 --------------
 # デモ環境（新バージョンになった場合、適宜変更）
-# デモ環境は今のところメンテナンス待ちのため、注文、取消では利用できません。
 my_url = 'https://demo-kabuka.e-shiten.jp/e_api_v4r2/'
 ##my_url = 'https://demo-kabuka.e-shiten.jp/e_api_v4r3/'
 
